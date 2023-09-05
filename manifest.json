@@ -1,0 +1,40 @@
+{
+    "manifest_version": 3,
+    "name": "Subtitles",
+    "version": "0.1.0",
+    "description": "Get Subtitles",
+    "permissions": ["storage", "tabs", "webNavigation", "webRequest", "downloads",  "declarativeNetRequest"],
+    "host_permissions": ["<all_urls>"],
+    "background": {
+      "service_worker": "Background/background.js",
+      "type": "module"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": [
+          "ContentScript/formatHTML.js",
+          "ContentScript/contentScript.js",
+          "ContentScript/Components/UIModal.js",
+          "ContentScript/Components/SearchTab.js",
+          "ContentScript/Components/SearchResult.js",
+          "ContentScript/Components/SubtitleText.js",
+          "ContentScript/Components/SettingsTab.js",
+          "ContentScript/Components/Content.js",
+          "node_modules/resemblejs/resemble.js"
+          ],
+        "all_frames": true
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["assets/icons/subtitles.png", "assets/icons/close.png", "assets/icons/movie_icon.png", "assets/icons/text_settings_icon.png", "assets/icons/time_settings_icon.png"],
+        "matches": ["<all_urls>"]
+      }
+    ],
+    "action": {
+      "default_icon": {},
+      "default_title": "Subtitles",
+      "default_popup": "Popup/popup.html"
+    }
+}
